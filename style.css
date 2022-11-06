@@ -79,6 +79,7 @@ main {
 
 .container {
     display: flex;
+    flex-direction: column;
     background-color: rgb(126, 254, 212);
     margin: 0 auto;
     height: 100%;
@@ -106,7 +107,7 @@ main {
     background-color: rgb(19, 137, 178);
 }
 
-.number {
+.number { 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,12 +123,17 @@ main {
     display: none;
 }
 
-.boom {
+.bomb {
     background-color: red;
 }
 
 .ok {
     background-color:greenyellow;
+}
+
+.result-container {
+    margin: 0 auto;
+    padding-top: 3rem;
 }
 
 /* FOOTER */
