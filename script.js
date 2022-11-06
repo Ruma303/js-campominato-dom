@@ -10,8 +10,7 @@ let arrMines = [];
 let score;
 let maxScore;
 
-
-//Al click del bottone Play
+//Al click del bottone Play crea la griglia
 btnPlay.addEventListener('click', function() {
     const numCells = parseInt(select.value);
     const nMines = 16;
@@ -23,7 +22,6 @@ btnPlay.addEventListener('click', function() {
     eleGrid.classList.remove('hidden');
     title.classList.add('hidden');
     eleGrid.innerHTML = ''; //reset
-    //eleGrid.replaceChildren(); //altro metodo
     
     //creo le celle dinamicamente
     const sideSquare = Math.sqrt(numCells); 
@@ -66,26 +64,24 @@ function toggleCell() {
 	// funzione per determinare l'elemento a cui determinare il tipo di cella
 	const cellNumber = parseInt(this.innerHTML);
 
-	if (arrMines.includes(cellNumber)) { // arrMines.includes(i) questa funzione grazie al concetto di "closure" ma se la funzione e' stata definita in uno scope che include la i
+	if (arrMines.includes(cellNumber)) { 
 		this.classList.add('bomb');
 		disableAllCells(true);
         lost.classList.remove('hidden');
         lost.innerHTML = `Hai perso! Il tuo punteggio é ${score}`
-		// alert('Hai perso! Il tuo punteggio é: ' + score);
 	} else {
-		this.removeEventListener('click', toggleCell); // evitiamo di accumulare punteggio cliccando su celle giá aperte
-		score++; // incremento score al ogni click di cella senza bomba
+		this.removeEventListener('click', toggleCell); // 
+		score++; // incremento score 
 		this.classList.add('ok');
 		if (score == maxScore) {
 			disableAllCells(false);
-			// alert('Complimenti hai vinto! Il tuo punteggio é: ' + score);
             win.classList.remove('hidden');
             win.innerHTML = `Hai vinto! Il tuo punteggio é ${score}`
 		}
 	}
 }
 
-//Funzione per generare le mine
+//Funzione per generare le mine    
 function generateMines(nMines, min, max) {
 	const arrRandoms = [];
     //forse serve dichiarare 
@@ -114,9 +110,6 @@ function disableAllCells(showMines) {
 		// console.log(cellNumber);
 		if (showMines && arrMines.includes(cellNumber)) {
 			listCells[i].classList.add('mine');
-		}
-		// toglie l'event listener dalla cella per disattivarla
-		listCells[i].removeEventListener('click', toggleCell);
-		// console.log('listener rimosso');
+		} listCells[i].removeEventListener('click', toggleCell);
 	}
 }

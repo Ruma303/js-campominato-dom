@@ -83,6 +83,7 @@ main {
     background-color: rgb(126, 254, 212);
     margin: 0 auto;
     height: 100%;
+    position: relative;
 }
 
 .grid {
@@ -132,8 +133,10 @@ main {
 }
 
 .result-container {
-    margin: 0 auto;
-    padding-top: 3rem;
+    transform: translate(-50%, -50%);
+    top: 5rem;
+    left: 50%;
+    position: absolute;
 }
 
 /* FOOTER */
