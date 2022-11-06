@@ -62,9 +62,6 @@ btnHelp.addEventListener('click', ()=> {
 )
 
 //funzione click sulla cella
-/*function toggleCell () {
-    this.classList.toggle('active');   
-}*/
 function toggleCell() {
 	// funzione per determinare l'elemento a cui determinare il tipo di cella
 	const cellNumber = parseInt(this.innerHTML);
