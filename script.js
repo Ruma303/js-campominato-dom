@@ -20,8 +20,11 @@ btnPlay.addEventListener('click', function() {
 	console.log(arrMines.sort((a, b) => a - b)); //print ordine crescente
 
     eleGrid.classList.remove('hidden');
-    title.classList.add('hidden');
+    title.classList.add('hidden'); //reset del titolo
+    win.innerHTML = '';//reset del risultato precedente
+    lost.innerHTML = '';//reset del risultato precedente
     eleGrid.innerHTML = ''; //reset
+    
     
     //creo le celle dinamicamente
     const sideSquare = Math.sqrt(numCells); 
@@ -66,7 +69,17 @@ function toggleCell() {
 
 	if (arrMines.includes(cellNumber)) { 
 		this.classList.add('bomb');
-		disableAllCells(true);
+		// disableAllCells(true);
+        const listCells = eleGrid.querySelectorAll('.cell');
+        for (let i = 0; i < listCells.length; i++) {
+            // se é una bomba illumina tutte le bombe
+            const cellNumber = parseInt(listCells[i].innerHTML);
+            if (arrMines.includes(cellNumber)) {
+                listCells[i].classList.add('bomb');
+            } 
+            listCells[i].removeEventListener('click', toggleCell);
+        }
+
         lost.classList.remove('hidden');
         lost.innerHTML = `Hai perso! Il tuo punteggio é ${score}`
 	} else {
@@ -74,7 +87,7 @@ function toggleCell() {
 		score++; // incremento score 
 		this.classList.add('ok');
 		if (score == maxScore) {
-			disableAllCells(false);
+			// disableAllCells(false);
             win.classList.remove('hidden');
             win.innerHTML = `Hai vinto! Il tuo punteggio é ${score}`
 		}
@@ -101,8 +114,7 @@ function getRandomInteger(min, max) {
 }
 
 
-function disableAllCells(showMines) {
-	const listCells = eleGrid.querySelectorAll('.cell');
+/*function disableAllCells(showMines) {
 	// console.log(listCells);
 	for (let i = 0; i < listCells.length; i++) {
 		// se é una bomba la illumina
@@ -112,4 +124,4 @@ function disableAllCells(showMines) {
 			listCells[i].classList.add('mine');
 		} listCells[i].removeEventListener('click', toggleCell);
 	}
-}
+}*/
